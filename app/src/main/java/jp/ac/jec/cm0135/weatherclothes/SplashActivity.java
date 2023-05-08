@@ -2,15 +2,31 @@ package jp.ac.jec.cm0135.weatherclothes;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.widget.ImageView;
+
+import java.util.Calendar;
 
 public class SplashActivity extends AppCompatActivity {
+    Calendar calendar = Calendar.getInstance();
+    int hourOfDay = calendar.get(Calendar.HOUR_OF_DAY); // 24시간 기준 시간을 가져옵니다.
+    private ImageView timeSplash;
+
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+        timeSplash = findViewById(R.id.imgSplash);
+
+        if(hourOfDay >= 18 || hourOfDay < 6) {
+            timeSplash.setImageResource(R.drawable.night);
+        }else {
+            timeSplash.setImageResource(R.drawable.morning);
+        }
 
         moveMain(1);	//1초 후 main activity 로 넘어감
     }
@@ -21,10 +37,9 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void run()
             {
-                //new Intent(현재 context, 이동할 activity)
                 Intent intent = new Intent(SplashActivity.this, MainActivity.class);
 
-                startActivity(intent);	//intent 에 명시된 액티비티로 이동
+                startActivity(intent);
 
                 finish();	//현재 액티비티 종료
             }

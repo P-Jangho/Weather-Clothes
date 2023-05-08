@@ -5,8 +5,8 @@
     android:gravity="center">
 
     <ImageView
+        android:id="@+id/imgSplash"
         android:layout_width="500dp"
-        android:layout_height="900dp"
-        android:src="@drawable/morning" />
+        android:layout_height="900dp" />
 
 </LinearLayout>

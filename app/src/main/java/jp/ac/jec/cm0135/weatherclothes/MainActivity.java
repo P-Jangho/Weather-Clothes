@@ -44,6 +44,9 @@ public class MainActivity extends AppCompatActivity {
     ImageView imageView;
     private String city;
     private String cityName = "";
+    public static int celsius;
+    private int celsiusMax;
+    private int celsiusMin;
 
     private static final String API_KEY = "cb61ebe4ad446ac4a81c8bbe5986c9fe";
     private static final String BASE_URL = "https://api.openweathermap.org/data/2.5/weather";
@@ -64,12 +67,13 @@ public class MainActivity extends AppCompatActivity {
         imageView = findViewById(R.id.sunIcon);
         btnClothes = findViewById(R.id.buttonClothes);
 
-        btnClothesStatus();
-
         SharedPreferences sp = getSharedPreferences("WeatherClothes", Context.MODE_PRIVATE);
         SharedPreferences.Editor edtr = sp.edit();
         String y = sp.getString("NAME", "");
         btnSave.setText(y);
+
+        btnClothesStatus();
+        btnSaveStatus(y);
 
         Drawable drawable = imageView.getDrawable();
 
@@ -94,8 +98,10 @@ public class MainActivity extends AppCompatActivity {
 
                 String x = sp.getString("NAME", "");
                 btnSave.setText(x);
+                btnSaveStatus(x);
 
                 Intent intent = new Intent(MainActivity.this, ClothesActivity.class);
+                intent.putExtra("temperature", celsius);
                 startActivity(intent);
             }
         });
@@ -146,6 +152,13 @@ public class MainActivity extends AppCompatActivity {
             btnClothes.setEnabled(true);
         }
     }
+    protected void btnSaveStatus(String citySave) {
+        if (citySave.equals("")) {
+            btnSave.setEnabled(false);
+        } else {
+            btnClothes.setEnabled(true);
+        }
+    }
     protected void weatherStatus() {
         String url = BASE_URL + "?q=" + city + "&appid=" + API_KEY;
 
@@ -168,9 +181,9 @@ public class MainActivity extends AppCompatActivity {
 
                     btnClothesStatus();
 
-                    int celsius = (int) (temperature - 273.15);
-                    int celsiusMax = (int) (tempMax - 273.15);
-                    int celsiusMin = (int) (tempMin - 273.15);
+                    celsius = (int) (temperature - 273.15);
+                    celsiusMax = (int) (tempMax - 273.15);
+                    celsiusMin = (int) (tempMin - 273.15);
                     txtTemperature.setText(celsius + " ℃");
                     temperatureMax.setText("↑" + celsiusMax);
                     temperatureMin.setText("↓" + celsiusMin);

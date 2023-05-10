@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
     private int celsiusMax;
     private int celsiusMin;
 
-    private static final String API_KEY = "cb61ebe4ad446ac4a81c8bbe5986c9fe";
+    private static final String API_KEY = BuildConfig.serverKey;
     private static final String BASE_URL = "https://api.openweathermap.org/data/2.5/weather";
     @SuppressLint("MissingInflatedId")
     @Override
@@ -156,7 +156,7 @@ public class MainActivity extends AppCompatActivity {
         if (citySave.equals("")) {
             btnSave.setEnabled(false);
         } else {
-            btnClothes.setEnabled(true);
+            btnSave.setEnabled(true);
         }
     }
     protected void weatherStatus() {

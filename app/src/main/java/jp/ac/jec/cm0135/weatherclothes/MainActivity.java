@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
     public static int celsius;
     private int celsiusMax;
     private int celsiusMin;
+    public static int celsiusFeel;
 
     private static final String API_KEY = BuildConfig.serverKey;
     private static final String BASE_URL = "https://api.openweathermap.org/data/2.5/weather";

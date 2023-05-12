@@ -36,7 +36,7 @@ public class ClothesActivity extends AppCompatActivity {
 
         MainActivity mainActivity = new MainActivity();
         temp = findViewById(R.id.temp);
-        temp.setText(mainActivity.celsius + " ℃");
+        temp.setText(mainActivity.celsius + " ℃ / " + mainActivity.celsiusFeel + " ℃");
         int temperature = getIntent().getIntExtra("temperature", 0);
         layout = findViewById(R.id.layout);
         int[] imageViews =

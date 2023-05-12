@@ -174,6 +174,7 @@ public class MainActivity extends AppCompatActivity {
                     double temperature = main.getDouble("temp");
                     double tempMax = main.getDouble("temp_max");
                     double tempMin = main.getDouble("temp_min");
+                    double tempFeel = main.getDouble("feels_like");
 
                     JSONArray weatherArray = jsonObject.getJSONArray("weather");
                     JSONObject weatherObject = weatherArray.getJSONObject(0);
@@ -185,6 +186,7 @@ public class MainActivity extends AppCompatActivity {
                     celsius = (int) (temperature - 273.15);
                     celsiusMax = (int) (tempMax - 273.15);
                     celsiusMin = (int) (tempMin - 273.15);
+                    celsiusFeel = (int) (tempFeel - 273.15);
                     txtTemperature.setText(celsius + " ℃");
                     temperatureMax.setText("↑" + celsiusMax);
                     temperatureMin.setText("↓" + celsiusMin);

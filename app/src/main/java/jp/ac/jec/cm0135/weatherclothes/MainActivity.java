@@ -135,75 +135,76 @@ public class MainActivity extends AppCompatActivity {
     }
 
     protected void weatherStatus(String description, int i) {
-        if(description.contains("02")) {
-            if(i == 0) {
+        if (description.contains("02")) {
+            if (i == 0) {
                 imageView.setImageResource(R.drawable.cloud);
-            }else if(i == 1) {
+            } else if (i == 1) {
                 img1.setImageResource(R.drawable.cloud);
-            }else if(i == 2) {
+            } else if (i == 2) {
                 img2.setImageResource(R.drawable.cloud);
-            }else {
+            } else {
                 img3.setImageResource(R.drawable.cloud);
             }
-        }else if(description.contains("03") || description.contains("04")) {
-            if(i == 0) {
+        } else if (description.contains("03") || description.contains("04")) {
+            if (i == 0) {
                 imageView.setImageResource(R.drawable.cloudy);
                 dayCloudy(description);
-            }else if(i == 1) {
+            } else if (i == 1) {
                 img1.setImageResource(R.drawable.cloudy);
-            }else if(i == 2) {
+            } else if (i == 2) {
                 img2.setImageResource(R.drawable.cloudy);
-            }else {
+            } else {
                 img3.setImageResource(R.drawable.cloudy);
             }
-        }else if(description.contains("09") || description.contains("10")) {
-            if(i == 0) {
+        } else if (description.contains("09") || description.contains("10")) {
+            if (i == 0) {
                 imageView.setImageResource(R.drawable.rain);
                 dayCloudy(description);
-            }else if(i == 1) {
+            } else if (i == 1) {
                 img1.setImageResource(R.drawable.rain);
-            }else if(i == 2) {
+            } else if (i == 2) {
                 img2.setImageResource(R.drawable.rain);
-            }else {
+            } else {
                 img3.setImageResource(R.drawable.rain);
             }
-        }else if(description.contains("11")) {
-            if(i == 0) {
+        } else if (description.contains("11")) {
+            if (i == 0) {
                 imageView.setImageResource(R.drawable.lightning);
                 dayCloudy(description);
-            }else if(i == 1) {
+            } else if (i == 1) {
                 img1.setImageResource(R.drawable.lightning);
-            }else if(i == 2) {
+            } else if (i == 2) {
                 img2.setImageResource(R.drawable.lightning);
-            }else {
+            } else {
                 img3.setImageResource(R.drawable.lightning);
             }
-        }else if(description.contains("13")) {
-            if(i == 0) {
+        } else if (description.contains("13")) {
+            if (i == 0) {
                 imageView.setImageResource(R.drawable.snow);
-            }else if(i == 1) {
+            } else if (i == 1) {
                 img1.setImageResource(R.drawable.snow);
-            }else if(i == 2) {
+            } else if (i == 2) {
                 img2.setImageResource(R.drawable.snow);
-            }else {
+            } else {
                 img3.setImageResource(R.drawable.snow);
             }
-        }else if(description.contains("50")){
-            if(i == 0) {
+        } else if (description.contains("50")) {
+            if (i == 0) {
                 imageView.setImageResource(R.drawable.fog);
-            }else if(i == 1) {
+            } else if (i == 1) {
                 img1.setImageResource(R.drawable.fog);
-            }else if(i == 2) {
+            } else if (i == 2) {
                 img2.setImageResource(R.drawable.fog);
-            }else {
+            } else {
                 img3.setImageResource(R.drawable.fog);
             }
-        }else {
+        } else {
             return;
         }
     }
+
     protected void dayCloudy(String description) {
-        if(description.contains("d")){
+        if (description.contains("d")) {
             GradientDrawable gradientDrawable = new GradientDrawable(
                     GradientDrawable.Orientation.TOP_BOTTOM,
                     new int[]{Color.parseColor("#2f4f4f"), Color.parseColor("#EEEEEE")}
@@ -211,6 +212,7 @@ public class MainActivity extends AppCompatActivity {
             linearLayout.setBackground(gradientDrawable);
         }
     }
+
     protected void btnClothesStatus() {
         if (cityName.equals("")) {
             btnClothes.setEnabled(false);
@@ -257,38 +259,21 @@ public class MainActivity extends AppCompatActivity {
                     temperatureMin.setText("↓" + celsiusMin);
                     txtCityName.setText(cityName);
 
-                    if (description.contains("d")) {
-                        //그라데이션배경설정
-                        GradientDrawable gradientDrawable = new GradientDrawable(
-                                GradientDrawable.Orientation.TOP_BOTTOM,
-                                new int[]{Color.parseColor("#0033FF"), Color.parseColor("#FFFFFF")}
-                        );
-                        linearLayout.setBackground(gradientDrawable);
-                        editCity.setTextColor(Color.BLACK);
-                        editCity.setHintTextColor(Color.BLACK);
-                        txtCityName.setTextColor(Color.BLACK);
-                        txtTemperature.setTextColor(Color.BLACK);
-                        temperatureMax.setTextColor(Color.BLACK);
-                        temperatureMin.setTextColor(Color.BLACK);
-                        imageView.setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_IN);
-                        imageView.setImageResource(R.drawable.sun);
-                        weatherStatus(description, 0);
-                    } else {
-                        GradientDrawable gradientDrawable = new GradientDrawable(
-                                GradientDrawable.Orientation.TOP_BOTTOM,
-                                new int[]{Color.parseColor("#182848"), Color.parseColor("#4B6CB7")}
-                        );
-                        linearLayout.setBackground(gradientDrawable);
-                        editCity.setTextColor(Color.WHITE);
-                        editCity.setHintTextColor(Color.WHITE);
-                        txtCityName.setTextColor(Color.WHITE);
-                        txtTemperature.setTextColor(Color.WHITE);
-                        temperatureMax.setTextColor(Color.WHITE);
-                        temperatureMin.setTextColor(Color.WHITE);
-                        imageView.setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_IN);
-                        imageView.setImageResource(R.drawable.moon);
-                        weatherStatus(description, 0);
-                    }
+                    int textColor = description.contains("d") ? Color.BLACK : Color.WHITE;
+                    int[] gradientColors = description.contains("d") ? new int[]{Color.parseColor("#0033FF"), Color.parseColor("#FFFFFF")} : new int[]{Color.parseColor("#182848"), Color.parseColor("#4B6CB7")};
+                    int imageResource = description.contains("d") ? R.drawable.sun : R.drawable.moon;
+
+                    GradientDrawable gradientDrawable = new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, gradientColors);
+                    linearLayout.setBackground(gradientDrawable);
+                    editCity.setTextColor(textColor);
+                    editCity.setHintTextColor(textColor);
+                    txtCityName.setTextColor(textColor);
+                    txtTemperature.setTextColor(textColor);
+                    temperatureMax.setTextColor(textColor);
+                    temperatureMin.setTextColor(textColor);
+                    imageView.setColorFilter(textColor, PorterDuff.Mode.SRC_IN);
+                    imageView.setImageResource(imageResource);
+                    weatherStatus(description, 0);
                     editCity.setText("");
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -319,7 +304,7 @@ public class MainActivity extends AppCompatActivity {
                     JSONArray forecastList = jsonObject.getJSONArray("list");
 
                     // 첫 번째 예보 정보 (현재 시간 기준으로 가까운 예보)
-                    JSONObject forecast1 = forecastList.getJSONObject(8);
+                    JSONObject forecast1 = forecastList.getJSONObject(8); // 3시간 단위로 예보 정보가 제공되므로 8번째 예보를 가져옴
                     double temp1 = forecast1.getJSONObject("main").getDouble("temp");
 
                     JSONArray weatherArray1 = forecast1.getJSONArray("weather");
@@ -332,7 +317,7 @@ public class MainActivity extends AppCompatActivity {
                     String date1 = dateTime1.split(" ")[0];
 
                     // 두 번째 예보 정보
-                    JSONObject forecast2 = forecastList.getJSONObject(16); // 3시간 단위로 예보 정보가 제공되므로 8번째 예보를 가져옴
+                    JSONObject forecast2 = forecastList.getJSONObject(16); // 3시간 단위로 예보 정보가 제공되므로 16번째 예보를 가져옴
                     double temp2 = forecast2.getJSONObject("main").getDouble("temp");
 
                     JSONArray weatherArray2 = forecast2.getJSONArray("weather");
@@ -345,7 +330,7 @@ public class MainActivity extends AppCompatActivity {
                     String date2 = dateTime2.split(" ")[0];
 
                     // 세 번째 예보 정보
-                    JSONObject forecast3 = forecastList.getJSONObject(24); // 3시간 단위로 예보 정보가 제공되므로 16번째 예보를 가져옴
+                    JSONObject forecast3 = forecastList.getJSONObject(24);
                     double temp3 = forecast3.getJSONObject("main").getDouble("temp");
 
                     JSONArray weatherArray3 = forecast3.getJSONArray("weather");
